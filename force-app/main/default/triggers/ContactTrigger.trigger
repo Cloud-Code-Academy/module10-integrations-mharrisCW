@@ -1,6 +1,6 @@
 /**
  * ContactTrigger Trigger Description:
- * 
+ * \
  * The ContactTrigger is designed to handle various logic upon the insertion and update of Contact records in Salesforce. 
  * 
  * Key Behaviors:
@@ -16,7 +16,14 @@
  * 
  * Optional Challenge: Use a trigger handler class to implement the trigger logic.
  */
-trigger ContactTrigger on Contact(before insert) {
+trigger ContactTrigger on Contact(before insert, after insert, before update, after update, before delete, after delete, after undelete) {
+
+	ContactTriggerHandler handler = new ContactTriggerHandler();
+	handler.run();
+
+	// if(Trigger.isBefore && Trigger.isUpdate) {
+	// 	ContactTriggerHandler.beforeUpdate(Trigger.new, Trigger.oldMap);
+
 	// When a contact is inserted
 	// if DummyJSON_Id__c is null, generate a random number between 0 and 100 and set this as the contact's DummyJSON_Id__c value
 
